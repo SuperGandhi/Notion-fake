@@ -14,9 +14,21 @@ export default function BlockView(){
             completed: false,
         }
     ]);
+
+    function handleChange(item){
+        const {type,text,id} = item;
+        if(type === 'text'){
+            const temp = [...data];
+            const editItem = temp.find(i => i.id === id)
+            if(editItem){
+                editItem.text = text;
+                setData(temp);
+            }
+        }
+    }
     
     return <div>
-        <TextBlockView ref={ref} data={data}/>
+        <TextBlockView ref={ref} data={data} onChange={handleChange}/>
     </div>;
 }
 
